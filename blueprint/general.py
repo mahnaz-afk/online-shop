@@ -3,5 +3,12 @@ app = Blueprint("general", __name__)
 
 
 @app.route('/')
-def hello_world():  # put application's code here
+def main():  # put application's code here
     return 'this is main page'
+
+
+
+
+@app.route('/')
+def about():  # put application's code here
+    return 'this is about'
