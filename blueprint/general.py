@@ -9,6 +9,6 @@ def main():  # put application's code here
 
 
 
-@app.route('/')
+@app.route('/about')
 def about():  # put application's code here
     return 'this is about'
