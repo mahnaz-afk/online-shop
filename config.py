@@ -1,1 +1,4 @@
 SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
+ADMIN_USER = "mahnaz"
+ADMIN_PASSWORD = "1234"
+SECRET_KEY = "734678346334@@#*^%343433"
