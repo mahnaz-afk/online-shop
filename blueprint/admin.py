@@ -1,5 +1,5 @@
 from extension import db
-from flask import Blueprint, render_template, request, abort, session, redirect
+from flask import Blueprint, render_template, request, abort, session, redirect, url_for
 import config
 from models.product import Product
 
@@ -8,7 +8,6 @@ app = Blueprint("admin", __name__)
 
 @app.before_request
 def before_request():
-
     if (session.get('admin_login', None) is None) and (request.endpoint != "admin/login"):
         abort(403)
 
@@ -52,3 +51,26 @@ def products():  # put application's code here
             db.session.add(p)
             db.session.commit()
             return "done"
+
+
+@app.route('/admin/dashboard/edit-products/<id>', methods=["GET", "POST"])
+def edit_products(id):  # put application's code here
+    product = Product.query.filter(Product.id == id).first_or_404()
+    if request.method == "GET":
+
+        return render_template("admin/edit-products.html", product=product)
+    else:
+        name = request.form.get('name', None)
+        description = request.form.get('description', None)
+        price = request.form.get('price', None)
+        active = request.form.get('active', None)
+        product.name = name
+        product.description = description
+        product.price = price
+        if active is None:
+            product.active = 0
+        else:
+            product.active = 1
+
+        db.session.commit()
+
