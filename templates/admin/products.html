@@ -1,29 +1,30 @@
 {% extends "base.html" %}
 {% block header %}
-<title xmlns="http://www.w3.org/1999/html">Admin Login</title>
+    <title xmlns="http://www.w3.org/1999/html">Admin Login</title>
 {% endblock %}
 {% block body %}
-<table>
-<tr>
-    <th>اسم</th>
-    <th>توضیحات</th>
-    <th>قیمت </th>
-    <th>فعال</th>
-    <th>ویرایش</th>
-</tr>
-    {% for p in products %}
-    <tr>
-        <td>{{p.name}}</td>
-        <td>{{p.description}}</td>
-        <td>{{p.price}}</td>
-        <td>{{"yes" if p.active==1 else "no"}}</td>
-        <td><a href="/admin/dashboard/edit-products/{{p.id}}">ویرایش</a></td>
-    </tr>
+    <table>
+        <tr>
+            <th>اسم</th>
+            <th>توضیحات</th>
+            <th>قیمت</th>
+            <th>فعال</th>
+            <th>ویرایش</th>
+        </tr>
+        {% for p in products %}
+            <tr>
+                <td>{{ p.name }}</td>
+                <td>{{ p.description }}</td>
+                <td>{{ p.price }}</td>
+                <td>{{ "yes" if p.active==1 else "no" }}</td>
+                <td><a href="/admin/dashboard/edit-products/{{ p.id }}">ویرایش</a></td>
+            </tr>
 
-    {% endfor %}
-</table>
+        {% endfor %}
+    </table>
     <h1> ADMIN Products</h1>
     <form action="#" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <input type="text" name="name" id="" placeholder="نام محصول"><br>
         <textarea name="description" placeholder="توضیحات"></textarea><br>
         <input type="number" name="price" id="" placeholder="قیمت محصول"><br>

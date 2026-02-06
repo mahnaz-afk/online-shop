@@ -74,3 +74,4 @@ def edit_products(id):  # put application's code here
 
         db.session.commit()
 
+        return redirect(url_for("admin.edit_products", id=id))
