@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block header %}
+    <title>فروشگاه اینترنتی ایرانیان</title>
+{% endblock %}
+
+{% block body %}
+    {% for p in products %}
+    {{ p.name }}
+    {% endfor %}
+{% endblock %}
