@@ -62,7 +62,6 @@ def products():  # put application's code here
 def edit_products(id):  # put application's code here
     product = Product.query.filter(Product.id == id).first_or_404()
     if request.method == "GET":
-
         return render_template("admin/edit-products.html", product=product)
     else:
         name = request.form.get('name', None)
