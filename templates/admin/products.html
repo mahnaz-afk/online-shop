@@ -5,6 +5,7 @@
 {% block body %}
     <table>
         <tr>
+            <th>تصویر</th>
             <th>اسم</th>
             <th>توضیحات</th>
             <th>قیمت</th>
@@ -13,6 +14,7 @@
         </tr>
         {% for p in products %}
             <tr>
+                <td ><img style="height:40px" src="/static/cover/{{ p.id }}.jpg"></td>
                 <td>{{ p.name }}</td>
                 <td>{{ p.description }}</td>
                 <td>{{ p.price }}</td>
@@ -23,12 +25,13 @@
         {% endfor %}
     </table>
     <h1> ADMIN Products</h1>
-    <form action="#" method="POST">
+    <form action="#" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <input type="text" name="name" id="" placeholder="نام محصول"><br>
         <textarea name="description" placeholder="توضیحات"></textarea><br>
         <input type="number" name="price" id="" placeholder="قیمت محصول"><br>
         <label><input type="checkbox" name="active" value="1">فعال</label><br>
+        <label><input type="file" name="cover">cover</label><br>
         <input type="submit">
     </form>
 {% endblock %}
