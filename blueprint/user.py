@@ -30,18 +30,21 @@ def login():  # put application's code here
             db.session.add(user)
             db.session.commit()
             login_user(user)
-            return redirect('/user/dashboard')
+            return redirect(url_for('user.login'))
         else:
             user = User.query.filter(User.username == username).first()
             if user is None:
                 flash('نام کاربری یا رمز اشتباه است')
                 return redirect(url_for('user.login'))
-            if sha256_crypt.verify(password,user.password):
+            if sha256_crypt.verify(password, user.password):
                 login_user(user)
-                return redirect('/user/dashboard')
+                return redirect(url_for('user.dashboard'))
             else:
                 flash('نام کاربری یا رمز اشتباه است')
                 return redirect(url_for('user.login'))
 
 
         return 'done'
+@app.route('/user/dashboard', methods=['GET'])
+def dashboard():
+    return "this is dashboard"
