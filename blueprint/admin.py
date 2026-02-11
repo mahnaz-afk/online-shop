@@ -8,7 +8,7 @@ app = Blueprint("admin", __name__)
 
 @app.before_request
 def before_request():
-    if (session.get('admin_login', None) is None) and (request.endpoint != "admin/login"):
+    if (session.get('admin_login', None) is None) and (request.endpoint != "admin.login"):
         abort(403)
 
 
@@ -77,7 +77,7 @@ def edit_products(id):  # put application's code here
         else:
             product.active = 1
 
-        if file != None:
+        if file is not None:
             file.save(f'static/cover/{product.id}.jpg')
 
         db.session.commit()

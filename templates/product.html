@@ -4,9 +4,15 @@
 {% endblock %}
 
 {% block body %}
-        <img style="height:100px" src="/static/cover/{{ products.id }}.jpg">
-        {{ products.id }} <br>
-        {{ products.name }}<br>
-        {{ products.price }}
+    <img style="height:100px" src="/static/cover/{{ products.id }}.jpg">
+    {{ products.id }} <br>
+    {{ products.name }}<br>
+    {{ products.price }}
+    <form action="/add-to-cart" method="GET">
+        <input type="hidden" name="id" value="{{ products.id }}">
+        <input type="submit" value="اضافه کدن به سبد خرید">
+
+
+    </form>
 
 {% endblock %}
