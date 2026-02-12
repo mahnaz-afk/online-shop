@@ -1,5 +1,5 @@
 from sqlalchemy import *
-from extension import db
+from extension import db, get_current_time
 from flask_login import UserMixin
 
 
@@ -10,5 +10,6 @@ class User(db.Model, UserMixin):
     password = Column(String, nullable=False, index=True)
     phone = Column(String(11), nullable=False, index=True)
     address = Column(String(40), nullable=False, index=True)
+    date_create = Column(String(15), default=get_current_time)
 
 
