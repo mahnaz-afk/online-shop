@@ -9,6 +9,10 @@ class Payment(db.Model):
     status = Column(String, default="pending")
     cart_id = Column(Integer, ForeignKey('carts.id'), nullable=False)
     price = Column(Integer)
+    token = Column(String)
+    refid = Column(String)
+    card_pan = Column(String)
+    transaction_id = Column(String)
     date_create = Column(String(15), default=get_current_time)
 
     cart = db.relationship('Cart', backref='payments')

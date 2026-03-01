@@ -7,7 +7,7 @@
     {% if cart != None  and cart.cart_items|list|length>0 %}
 
     {% for cart_item in cart.cart_items %}
-    {{ cart_item.product.name }} {{ cart_item.quantity }}{{ cart_item.product.price }}
+    {{ cart_item.product.name }}, {{ cart_item.quantity }},{{ cart_item.product.price }}
         <form action="/remove-from-cart " method="GET">
         <input type="hidden" name="id" value="{{cart_item.id}}">
         <input type="submit" value="حذف">
@@ -15,6 +15,7 @@
      {% endfor %}
 
     <b>قیمت کل:{{ cart.total_price() }}تومان</b>
+        <a href="/payment">پرداخت</a>
     {%else%}
         سبد خرید خالیست
     {% endif %}
