@@ -103,7 +103,7 @@ def cart():
 @app.route('/user/dashboard', methods=['GET'])
 @login_required
 def dashboard():
-    return "this is dashboard"
+    return render_template('user/dashboard.html')
 
 
 @app.route('/payment', methods=['GET'])
@@ -111,33 +111,32 @@ def dashboard():
 def payment():
     cart = current_user.carts.filter(Cart.status == 'pending').first()
     r = requests.post(config.PAYMENT_FIRST_REQUEST_URL,
-                      data=
-                      {'api': config.PAYMENT_MERCHANT,
-                       'amount': cart.total_price(),
-                       'callback': config.PAYMENT_CALLBACK
-                       })
+                      data={'api': config.PAYMENT_MERCHANT,
+                            'amount': cart.total_price(),
+                            'callback': config.PAYMENT_CALLBACK
+                            })
+
     token = r.json()['result']['token']
     url = r.json()['result']['url']
-
-    pay = Payment(price=cart.total_price(), cart=cart, token=token)
+    pay = Payment(price=cart.total_price(), token=token, cart=cart)
     db.session.add(pay)
     db.session.commit()
-
     return redirect(url)
+
 
 @app.route('/verify', methods=['GET'])
 @login_required
 def verify():
-
     token = request.args.get('token')
     pay = Payment.query.filter(Payment.token == token).first_or_404()
+
     r = requests.post(config.PAYMENT_VERIFY_REQUEST_URL,
-                      data=
-                      {'api': config.PAYMENT_MERCHANT,
+                      {'token': token,
                        'amount': pay.price,
-                       'token': token
+                       'api': config.PAYMENT_MERCHANT
                        })
-    pay_status = bool(r.jason()['success'])
+
+    pay_status = bool(r.json()['success'])
     if pay_status:
         transaction_id = r.json()['result']['transaction_id']
         refid = r.json()['result']['refid']
@@ -150,7 +149,8 @@ def verify():
         db.session.commit()
         flash("پرداخت موفقیت آمیز بود")
     else:
-         pay.status = 'faild'
-         db.session.commit()
-         flash("پرداخت با خطا مواجه شد")
+        pay.status = 'faild'
+        db.session.commit()
+        flash("پرداخت با خطا مواجه شد")
+
     return redirect(url_for('user.dashboard'))
