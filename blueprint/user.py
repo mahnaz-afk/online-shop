@@ -100,12 +100,6 @@ def cart():
     return render_template('user/cart.html', cart=cart)
 
 
-@app.route('/user/dashboard', methods=['GET'])
-@login_required
-def dashboard():
-    return render_template('user/dashboard.html')
-
-
 @app.route('/payment', methods=['GET'])
 @login_required
 def payment():
@@ -154,3 +148,16 @@ def verify():
         flash("پرداخت با خطا مواجه شد")
 
     return redirect(url_for('user.dashboard'))
+
+
+@app.route('/user/dashboard', methods=['GET'])
+@login_required
+def dashboard():
+    return render_template('user/dashboard.html')
+
+
+@app.route('/user/dashboard/order/<id>', methods=['GET'])
+@login_required
+def order(id):
+    cart = current_user.carts.filter(Cart.id == id).first_or_404()
+    return render_template('user/order.html', cart=cart)
