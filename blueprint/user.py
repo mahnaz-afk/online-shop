@@ -153,6 +153,7 @@ def verify():
 @app.route('/user/dashboard', methods=['GET'])
 @login_required
 def dashboard():
+
     return render_template('user/dashboard.html')
 
 

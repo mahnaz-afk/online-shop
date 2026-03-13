@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block header %}
-<title>Admin Login</title>
+<title>Admin Dashboard</title>
 {% endblock %}
 
 {% block body %}
-    <h1> ADMIN Dashboard</h1>
-<form action="#" method="POST">
         <a href="/admin/dashboard/products">صفحه محصولات</a>
-    </form>
+        <div>
+            {% for cart in carts %}
+               {{cart.user.phone}} {{cart.get_status_persian()}}<a href="{{url_for('admin.order',id=cart.id)}}">اطلاعات بیشتر</a><br>
+            {% endfor %}
+       </div>
 {% endblock %}
 
