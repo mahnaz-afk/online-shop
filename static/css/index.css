@@ -54,11 +54,13 @@ header div
 header a:hover{
     text-decoration: underline;
 }
-.product-box{
+.product-box section{
     max-width: 250px;
     margin: 15px;
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 10px;
+    height: 100%;
+
 
 
 }
@@ -71,36 +73,47 @@ header a:hover{
     align-items: stretch;
     margin-top: 20px;
 }
-.product-box>img{
+.product-box section>img{
     width: 100%;
     border-top-right-radius: inherit;
     border-top-left-radius: inherit;
 }
+.product-box:hover .add-to-cart-btn{
+    opacity: 1;
+}
 
-.product-box>h3{
+.product-box section>h3{
    margin: 5px;
 }
-.product-box>div>a{
+.product-box{
+    position: relative;
+}
+.add-to-cart-btn{
+    opacity: 0;
     text-decoration: none;
     padding: 5px;
     font-size: 14px;
     border: 2px solid rgba(14,255,0,0.6);
     border-radius: 9px;
-    background: rgba(24, 255, 0, 0.32);
-    color: var(--fontcolor--);
+    background: rgb(3, 66, 2);
+    color: #fafafa;
     float:left;
     margin: 10px;
+    top: 10px;
+    left: 0px;
+    position: absolute;
 }
-.product-box>p{
+.product-box>section>p{
     font-size: 12px;
     margin: 0 10px;
 
+
 }
-.product-box>div>a:hover{
+.add-to-cart-btn:hover{
 
     border: 2px solid rgba(14,255,0,0.6);
 
-    background: rgba(24, 255, 0, 0.08);
+    background: rgba(0, 0, 0, 1);
 
 }
 *{
