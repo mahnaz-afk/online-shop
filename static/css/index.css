@@ -60,6 +60,7 @@ header a:hover{
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 10px;
     height: 100%;
+    padding-bottom: 30px;
 
 
 
@@ -70,7 +71,7 @@ header a:hover{
     margin: auto;
     display: flex;
     justify-content: center;
-    align-items: stretch;
+    align-items: start;
     margin-top: 20px;
 }
 .product-box section>img{
@@ -120,4 +121,11 @@ header a:hover{
     transition: all 200ms;
     margin: 0;
     padding: 0;
+}
+.price{
+    font-weight: 600;
+    font-size: 16px;
+    float: left;
+    padding-left: 10px;
+
 }
