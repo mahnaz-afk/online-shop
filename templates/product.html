@@ -4,15 +4,34 @@
 {% endblock %}
 
 {% block body %}
-    <img style="height:100px" src="/static/cover/{{ products.id }}.jpg">
-    {{ products.id }} <br>
-    {{ products.name }}<br>
-    {{ products.price }}
-    <form action="/add-to-cart" method="GET">
-        <input type="hidden" name="id" value="{{ products.id }}">
-        <input type="submit" value="اضافه کدن به سبد خرید">
+    {% include 'part/header.html' %}
+
+    <div class="product-detail">
+    <div><img  src="{{ url_for('static',filename='cover/'+products.id|string+'.jpg') }}"></div>
+    <section>
+    <h1 style="margin-right: 15px">{{products.name}}</h1>
+    <h3 style="margin-right: 15px">شماره محصول: {{products.id}}</h3>
 
 
-    </form>
+       <div>
+           <span class="price" style="float: right;padding-left: 10px;">{{ products.price }} </span><br>
+           <a class="add-to-cart-btn2"  href="/add-to-cart?id={{products.id}}">افزودن به سبد خرید</a>
+       </div>
+    </section>
+    </div>
+
+<article class="product-description">
+<h2>مشخصات</h2>
+<p > {{ products.description }}</p>
+</article>
+    <section class="similar-products-box">
+         <h2>محصولات مشابه</h2>
+         <section class="products">
+                 {% for p in another_product %}
+                    {% include 'part/product.html' %}
+                 {% endfor %}
+         </section>
+    </section>
+
 
 {% endblock %}

@@ -103,6 +103,8 @@ header a:hover{
     top: 10px;
     left: 0px;
     position: absolute;
+    display: flex;
+    justify-content: center;
 }
 .product-box>section>p{
     font-size: 12px;
@@ -125,7 +127,54 @@ header a:hover{
 .price{
     font-weight: 600;
     font-size: 16px;
-    float: left;
-    padding-left: 10px;
+    padding-right: 13px;
 
+
+}
+
+.add-to-cart-btn2:hover{
+
+    border: 2px solid rgba(14,255,0,0.6);
+
+    background: rgba(0, 0, 0, 1);
+
+}
+.add-to-cart-btn2{
+
+    text-decoration: none;
+    padding: 5px;
+    font-size: 16px;
+    border: 2px solid rgba(14,255,0,0.6);
+    border-radius: 9px;
+    background: rgb(3, 66, 2);
+    color: #fafafa;
+    float:left;
+    margin: 10px;
+    font-weight:400;
+
+}
+.product-detail{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
+    justify-content: center;
+    align-items: start;
+    margin: 50px auto auto;
+}
+product-detail img{
+    max-width: 280px;
+}
+product-detail>section{
+    max-width: 500px;
+}
+.product-description{
+    max-width: 800px;
+    margin: auto;
+}
+.product-description p{
+    text-align: justify;
+}
+.similar-products-box{
+    max-width: 800px;
+    margin: 20px auto auto;
 }
