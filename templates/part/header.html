@@ -1,12 +1,12 @@
 <header>
     <section >
-            <img src="{{ url_for('static',filename='images/Pis.png') }}" alt="iranian shop">
+        <a href="/"><img src="{{ url_for('static',filename='images/Pis.png') }}" alt="iranian shop"></a>
             <div id="header-menu">
                 <span id="header-menu-close-btn" onclick="javascript:change_header_menu(false)">x</span>
                 <form action="/" method="get">
                 <input type="search" value="{{ search if search is not none }}" name="search" placeholder=" جستجو...">
                 </form>
-                <a href="/" >صفحه اصلی</a>
+                <a href="/cart" >سبد خرید</a>
                 <a href="/user/login" >ورود/ثبت نام</a>
                 <a href="/about" >درباره ما</a>
            </div>

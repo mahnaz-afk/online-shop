@@ -1,22 +1,37 @@
 {% extends "base.html" %}
 {% block header %}
-    <title>سبد خرید کاربر</title>
+    <title>سبد خرید </title>
 {% endblock %}
-
+{% include 'part/header.html' %}
 {% block body %}
+    <section class="simple-box">
+
     {% if cart != None  and cart.cart_items|list|length>0 %}
+        <h3>سبد خرید</h3>
+    <table class="cart">
+    <tr>
+    <th>محصول</th>
+     <th>قیمت</th>
+    <th>تعداد</th>
 
+    </tr>
     {% for cart_item in cart.cart_items %}
-    {{ cart_item.product.name }}, {{ cart_item.quantity }},{{ cart_item.product.price }}
-        <form action="/remove-from-cart " method="GET">
-        <input type="hidden" name="id" value="{{cart_item.id}}">
-        <input type="submit" value="حذف">
-        </form>
-     {% endfor %}
+    <tr>
+        <td>{{ cart_item.product.name }}</td>
+        <td class="price" style="text-align: center">{{ cart_item.product.price }}</td>
+        <td><a class="cart-item-btn cart-item-decrease" href="/remove-from-cart?id={{cart_item.id}}">-</a>{{ cart_item.quantity }}<a class="cart-item-btn cart-item-increase" href="/add-to-cart?id={{cart_item.product.id}}">+</a> </td>
 
-    <b>قیمت کل:{{ cart.total_price() }}تومان</b>
-        <a href="/payment">پرداخت</a>
+    </tr>
+     {% endfor %}
+    <tr>
+         <td colspan="3" class="price"  style="text-align: left">{{ cart.total_price() }}</td>
+    </tr>
+    </table>
+    <div style="text-align: center; margin-top: 10px">
+        <a class="add-to-cart-btn2"  href="/payment">پرداخت</a>
+    </div>
     {%else%}
         سبد خرید خالیست
     {% endif %}
+    </section>
 {% endblock %}

@@ -210,8 +210,7 @@ header a:hover{
     font-weight: 600;
     font-size: 16px;
     padding-left: 13px;
-    float: left
-;
+
 
 }
 
@@ -231,7 +230,7 @@ header a:hover{
     border-radius: 9px;
     background: rgb(3, 66, 2);
     color: #fafafa;
-    float:left;
+
     margin: 10px;
     font-weight:400;
 
@@ -243,9 +242,14 @@ header a:hover{
     justify-content: center;
     align-items: start;
     margin: 50px auto auto;
+    background: #fafafa;
+    border-radius: 10px;
+    border: 2px solid #dedcdc;
+    padding:10px;
 }
 product-detail img{
     max-width: 280px;
+
 }
 product-detail>section{
     max-width: 500px;
@@ -268,6 +272,53 @@ product-detail>section{
 }
 #header-menu-close-btn{
     display: none;
+}
+.simple-box{
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    background: #ffffff;
+    border-radius: 25px;
+    max-width: 800px;
+    margin: 20px auto auto;
+    padding: 10px;
+    width: 40%;
+}
+.simple-box>h3{
+    margin: 0 auto 10px;
+    width: 40%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #c1c6c7;
+
+}
+table.cart{
+    margin: auto;
+}
+table.cart td{
+    border-bottom: 2px solid #b5b9b9;
+    padding: 7px;
+}
+.cart-item-btn{
+     width: 25px;
+    height: 25px;
+    border-radius: 50%;
+
+    padding:1px;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+
+}
+.cart-item-decrease{
+
+    background: rgba(255, 0, 0, 0.25);
+
+    margin-left:3px ;
+}
+.cart-item-increase{
+
+    background: rgba(0, 128, 0, 0.25);
+
+    margin-right:3px ;
 }
 @media(max-width:750px) {
     header > section > div > * {
